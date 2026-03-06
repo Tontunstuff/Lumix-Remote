@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.LumixRemote" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#E8A020</item>
+        <item name="colorPrimaryVariant">#B07010</item>
+        <item name="colorOnPrimary">#000000</item>
+        <item name="colorSecondary">#F0C060</item>
+        <item name="colorSurface">#111418</item>
+        <item name="android:colorBackground">#0A0C0F</item>
+        <item name="android:windowBackground">#0A0C0F</item>
+        <item name="android:statusBarColor">#0A0C0F</item>
+        <item name="android:navigationBarColor">#0A0C0F</item>
+    </style>
+</resources>

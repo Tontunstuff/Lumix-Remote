@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0C0F"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LUMIX REMOTE"
+                    android:textColor="#E8A020"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.15"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DMC-G7K · WiFi CTRL"
+                    android:textColor="#5A6878"
+                    android:textSize="11sp"
+                    android:letterSpacing="0.1"/>
+            </LinearLayout>
+
+            <!-- Status Badge -->
+            <LinearLayout
+                android:id="@+id/statusBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/badge_bg"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <View
+                    android:id="@+id/statusDot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/dot_offline"
+                    android:layout_marginEnd="6dp"/>
+
+                <TextView
+                    android:id="@+id/statusText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OFFLINE"
+                    android:textColor="#5A6878"
+                    android:textSize="11sp"
+                    android:letterSpacing="0.1"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Connection Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_bg"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="▌  KONEKSI KAMERA"
+                android:textColor="#5A6878"
+                android:textSize="10sp"
+                android:letterSpacing="0.2"
+                android:layout_marginBottom="12dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/ipInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/input_bg"
+                    android:text="192.168.54.1"
+                    android:textColor="#C8D4E0"
+                    android:textSize="14sp"
+                    android:padding="10dp"
+                    android:hint="IP Kamera"
+                    android:hintTextColor="#5A6878"
+                    android:inputType="text"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="monospace"/>
+
+                <Button
+                    android:id="@+id/btnConnect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="KONEK"
+                    android:textColor="#0A0C0F"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1"
+                    android:backgroundTint="#E8A020"
+                    android:paddingHorizontal="16dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💡 WiFi kamera → sambungkan HP → tap KONEK"
+                android:textColor="#5A6878"
+                android:textSize="10sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <!-- Live View Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_bg"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="▌  LIVE VIEW"
+                    android:textColor="#5A6878"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.2"/>
+
+                <TextView
+                    android:id="@+id/recIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⬤ REC  00:00"
+                    android:textColor="#E03030"
+                    android:textSize="12sp"
+                    android:letterSpacing="0.1"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <!-- Live view image -->
+            <ImageView
+                android:id="@+id/liveViewImg"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="200dp"
+                android:background="#000000"
+                android:scaleType="fitCenter"
+                android:contentDescription="Live View"/>
+
+            <!-- Placeholder -->
+            <LinearLayout
+                android:id="@+id/lvPlaceholder"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#000000">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📷"
+                    android:textSize="48sp"
+                    android:alpha="0.3"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Belum Terhubung"
+                    android:textColor="#5A6878"
+                    android:textSize="13sp"
+                    android:layout_marginTop="8dp"/>
+            </LinearLayout>
+
+            <!-- Live view controls -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/btnLvStart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="▶ MULAI"
+                    android:textColor="#E8A020"
+                    android:backgroundTint="#111418"
+                    android:strokeColor="#1E2530"
+                    android:layout_marginEnd="6dp"
+                    android:textSize="12sp"/>
+
+                <Button
+                    android:id="@+id/btnLvStop"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="■ STOP"
+                    android:textColor="#5A6878"
+                    android:backgroundTint="#111418"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Shutter Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_bg"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="▌  KONTROL SHUTTER"
+                android:textColor="#5A6878"
+                android:textSize="10sp"
+                android:letterSpacing="0.2"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- Big Shutter Button -->
+            <Button
+                android:id="@+id/btnShutter"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:text=""
+                android:backgroundTint="#DDDDDD"
+                android:elevation="8dp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TAP — AMBIL FOTO"
+                android:textColor="#5A6878"
+                android:textSize="10sp"
+                android:letterSpacing="0.2"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- Video controls -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnRecStart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🔴 REKAM"
+                    android:textColor="#C8D4E0"
+                    android:backgroundTint="#1A1A1A"
+                    android:layout_marginEnd="6dp"
+                    android:textSize="12sp"/>
+
+                <Button
+                    android:id="@+id/btnRecStop"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="⏹ STOP"
+                    android:textColor="#C8D4E0"
+                    android:backgroundTint="#1A1A1A"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <!-- AF Button -->
+            <Button
+                android:id="@+id/btnAF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="◎  AUTOFOCUS"
+                android:textColor="#C8D4E0"
+                android:backgroundTint="#1A1A1A"
+                android:layout_marginTop="6dp"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <!-- Camera Settings Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_bg"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="▌  PENGATURAN KAMERA"
+                android:textColor="#5A6878"
+                android:textSize="10sp"
+                android:letterSpacing="0.2"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- ISO -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp"
+                android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="ISO" android:textColor="#5A6878" android:textSize="13sp" android:textStyle="bold" android:letterSpacing="0.1"/>
+                <Button android:id="@+id/btnIsoDec" android:layout_width="36dp" android:layout_height="36dp"
+                    android:text="−" android:backgroundTint="#1E2530" android:textColor="#C8D4E0" android:textSize="18sp" android:padding="0dp"/>
+                <TextView android:id="@+id/isoVal" android:layout_width="80dp" android:layout_height="wrap_content"
+                    android:text="AUTO" android:textColor="#E8A020" android:textSize="14sp" android:gravity="center" android:fontFamily="monospace"/>
+                <Button android:id="@+id/btnIsoInc" android:layout_width="36dp" android:layout_height="36dp"
+                    android:text="+" android:backgroundTint="#1E2530" android:textColor="#C8D4E0" android:textSize="18sp" android:padding="0dp"/>
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2530" android:layout_marginVertical="4dp"/>
+
+            <!-- Shutter Speed -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp"
+                android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="SHUTTER" android:textColor="#5A6878" android:textSize="13sp" android:textStyle="bold" android:letterSpacing="0.1"/>
+                <Button android:id="@+id/btnSsDec" android:layout_width="36dp" android:layout_height="36dp"
+                    android:text="−" android:backgroundTint="#1E2530" android:textColor="#C8D4E0" android:textSize="18sp" android:padding="0dp"/>
+                <TextView android:id="@+id/ssVal" android:layout_width="80dp" android:layout_height="wrap_content"
+                    android:text="1/60" android:textColor="#E8A020" android:textSize="14sp" android:gravity="center" android:fontFamily="monospace"/>
+                <Button android:id="@+id/btnSsInc" android:layout_width="36dp" android:layout_height="36dp"
+                    android:text="+" android:backgroundTint="#1E2530" android:textColor="#C8D4E0" android:textSize="18sp" android:padding="0dp"/>
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2530" android:layout_marginVertical="4dp"/>
+
+            <!-- Aperture -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp"
+                android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="APERTURE" android:textColor="#5A6878" android:textSize="13sp" android:textStyle="bold" android:letterSpacing="0.1"/>
+                <Button android:id="@+id/btnFDec" android:layout_width="36dp" android:layout_height="36dp"
+                    android:text="−" android:backgroundTint="#1E2530" android:textColor="#C8D4E0" android:textSize="18sp" android:padding="0dp"/>
+                <TextView android:id="@+id/fVal" android:layout_width="80dp" android:layout_height="wrap_content"
+                    android:text="f/3.5" android:textColor="#E8A020" android:textSize="14sp" android:gravity="center" android:fontFamily="monospace"/>
+                <Button android:id="@+id/btnFInc" android:layout_width="36dp" android:layout_height="36dp"
+                    android:text="+" android:backgroundTint="#1E2530" android:textColor="#C8D4E0" android:textSize="18sp" android:padding="0dp"/>
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2530" android:layout_marginVertical="4dp"/>
+
+            <!-- EV -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp"
+                android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="EXP COMP" android:textColor="#5A6878" android:textSize="13sp" android:textStyle="bold" android:letterSpacing="0.1"/>
+                <Button android:id="@+id/btnEvDec" android:layout_width="36dp" android:layout_height="36dp"
+                    android:text="−" android:backgroundTint="#1E2530" android:textColor="#C8D4E0" android:textSize="18sp" android:padding="0dp"/>
+                <TextView android:id="@+id/evVal" android:layout_width="80dp" android:layout_height="wrap_content"
+                    android:text="±0" android:textColor="#E8A020" android:textSize="14sp" android:gravity="center" android:fontFamily="monospace"/>
+                <Button android:id="@+id/btnEvInc" android:layout_width="36dp" android:layout_height="36dp"
+                    android:text="+" android:backgroundTint="#1E2530" android:textColor="#C8D4E0" android:textSize="18sp" android:padding="0dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Zoom Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_bg"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="▌  ZOOM"
+                android:textColor="#5A6878"
+                android:textSize="10sp"
+                android:letterSpacing="0.2"
+                android:layout_marginBottom="12dp"/>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                <Button android:id="@+id/btnZoomW"
+                    android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="🔍 WIDE" android:textColor="#C8D4E0" android:backgroundTint="#1A1A1A"
+                    android:layout_marginEnd="6dp" android:textSize="13sp"/>
+                <Button android:id="@+id/btnZoomT"
+                    android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="🔭 TELE" android:textColor="#C8D4E0" android:backgroundTint="#1A1A1A"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Log Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_bg"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="10dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="▌  LOG AKTIVITAS" android:textColor="#5A6878" android:textSize="10sp" android:letterSpacing="0.2"/>
+                <Button android:id="@+id/btnClearLog"
+                    android:layout_width="wrap_content" android:layout_height="36dp"
+                    android:text="BERSIHKAN" android:textColor="#E8A020" android:backgroundTint="#0A0C0F"
+                    android:textSize="10sp"/>
+            </LinearLayout>
+
+            <ScrollView android:id="@+id/logScroll"
+                android:layout_width="match_parent" android:layout_height="100dp"
+                android:background="#0A0C0F"
+                android:padding="8dp">
+                <TextView android:id="@+id/logText"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="[SISTEM] Lumix Remote v1.0 siap\n"
+                    android:textColor="#5A6878" android:textSize="10sp" android:fontFamily="monospace"
+                    android:lineSpacingMultiplier="1.5"/>
+            </ScrollView>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

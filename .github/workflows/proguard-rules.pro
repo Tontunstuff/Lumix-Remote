@@ -1,0 +1,2 @@
+-keep class com.lumixremote.** { *; }
+-keepattributes *Annotation*
